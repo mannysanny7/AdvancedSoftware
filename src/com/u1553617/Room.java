@@ -41,7 +41,7 @@ public class Room {
     private void displayTree(RoomNode R){
         if (R != null) {
             displayTree(R.left);
-            System.out.println(R.dataItem);
+            System.out.println(R.roomID + R.roomSize + R.roomType + R.roomAvailable);
             displayTree(R.right);
         }
     }
@@ -60,6 +60,7 @@ public class Room {
         ActionListener e = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println(newRoom + " " +size+ " " + type);
                 add(newRoom, size, type);
             }
         };
