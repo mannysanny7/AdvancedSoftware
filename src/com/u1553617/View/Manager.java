@@ -1,6 +1,7 @@
 package com.u1553617.View;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
@@ -11,11 +12,18 @@ public class Manager {
     private JButton viewListBtn;
     private JComboBox roomSizeCB;
     private JComboBox roomTypeCB;
+    private JTable roomsTable;
+    private JButton removeRoomButton;
+    private JButton viewAvailabiltyOfRoomButton;
+    private JButton markRoomAsUnavailableButton;
+
+    private DefaultTableModel tableModel;
+
+    String[] header = {"Room ID", "Room Size", "Room Type", "Room Available"};
 
     public JPanel getPanel() {
         return panel1;
     }
-
 
     /*
     Action Listener in Controller deals with adding room.
@@ -46,15 +54,32 @@ public class Manager {
         return Integer.parseInt(size);
     }
 
+    public JTable getRoomsTable() {
+        return roomsTable;
+    }
+
+    public DefaultTableModel getTableModel() {
+        return tableModel;
+    }
+
+    public JButton getRemoveRoomButton() {
+        return removeRoomButton;
+    }
+
+    public JButton getViewAvailabiltyOfRoomButton() {
+        return viewAvailabiltyOfRoomButton;
+    }
+
+    public JButton getMarkRoomAsUnavailableButton() {
+        return markRoomAsUnavailableButton;
+    }
+
     /*
     public void viewListActionListener(ActionListener viewListAL) {
         viewListBtn.addActionListener(viewListAL);
         System.out.println("View List Button Pressed");
     }
     */
-
-
-
 
 
     {
@@ -114,6 +139,20 @@ public class Manager {
         viewListBtn = new JButton();
         viewListBtn.setText("View List");
         panel1.add(viewListBtn);
+        roomsTable = new JTable();
+        panel1.add(roomsTable);
+        removeRoomButton = new JButton();
+        removeRoomButton.setText("Remove Room");
+        panel1.add(removeRoomButton);
+        viewAvailabiltyOfRoomButton = new JButton();
+        viewAvailabiltyOfRoomButton.setText("View Availabilty of Room");
+        panel1.add(viewAvailabiltyOfRoomButton);
+        markRoomAsUnavailableButton = new JButton();
+        markRoomAsUnavailableButton.setText("Mark Room as unavailable");
+        panel1.add(markRoomAsUnavailableButton);
+        final JLabel label4 = new JLabel();
+        label4.setText("Term Dates:");
+        panel1.add(label4);
     }
 
     /**

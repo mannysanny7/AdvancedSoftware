@@ -1,9 +1,6 @@
 package com.u1553617;
 
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Date;
+import java.util.ArrayList;
 
 public class Room {
 
@@ -14,10 +11,12 @@ public class Room {
     private boolean roomAvailable;*/
 
     private RoomNode root;
+    private ArrayList<RoomNode> allRooms = new ArrayList<RoomNode>();
 
     Room(){
         root = null;
     }
+
     void add(String newRoom, Integer size, String type){
         root = addNewNode(root, newRoom, size, type);
     }
@@ -34,19 +33,25 @@ public class Room {
         }
     }
 
-    void display(){
+    ArrayList<RoomNode> display(){
         displayTree(root);
+        return (allRooms);
     }
 
     private void displayTree(RoomNode R){
         if (R != null) {
             displayTree(R.left);
             System.out.println(R.roomID + R.roomSize + R.roomType + R.roomAvailable);
+            allRooms.add(R);
             displayTree(R.right);
         }
     }
 
-    public ActionListener allRooms() {
+    private void removeRoomNode(){
+
+    }
+
+    /*public ActionListener allRooms() {
         ActionListener e = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -65,7 +70,7 @@ public class Room {
             }
         };
         return e;
-    }
+    }*/
 
 
 

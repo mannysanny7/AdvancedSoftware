@@ -1,7 +1,9 @@
 package com.u1553617;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class RoomNode {
 
@@ -17,7 +19,7 @@ public class RoomNode {
         LECTURE
     }
     String roomType;
-    Date roomDateTime; //availability of room to book
+    Calendar roomDateTime; //availability of room to book
     boolean roomAvailable = true; //by default, room is available
 
     RoomNode(String ID, Integer size, String type, boolean isAvailable){
@@ -28,7 +30,10 @@ public class RoomNode {
         roomType = type;
 
         roomAvailable = isAvailable;
+        roomDateTime = new GregorianCalendar();
 
+        roomDateTime.set(Calendar.HOUR_OF_DAY, 18);
+        roomDateTime.set(Calendar.DAY_OF_WEEK, 2);
 
         left = null;
         right = null;

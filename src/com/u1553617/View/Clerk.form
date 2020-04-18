@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.u1553617.View.Clerk">
+  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="510" height="392"/>
+    </constraints>
+    <properties>
+      <font/>
+    </properties>
+    <border type="none" title="Clerk GUI" title-justification="2">
+      <font/>
+    </border>
+    <children>
+      <grid id="90afe" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="Center"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="df032" class="javax.swing.JButton" binding="showAvailableRoomsButton" default-binding="true">
+            <constraints border-constraint="West"/>
+            <properties>
+              <text value="Show Available Rooms"/>
+            </properties>
+          </component>
+          <component id="aa01e" class="javax.swing.JTable" binding="table1" default-binding="true">
+            <constraints border-constraint="Center"/>
+            <properties/>
+          </component>
+          <grid id="fdd7e" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints border-constraint="South"/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="1ac6c" class="javax.swing.JButton" binding="addBookingDetailsButton" default-binding="true">
+                <constraints border-constraint="Center"/>
+                <properties>
+                  <text value="Add Booking Details"/>
+                </properties>
+              </component>
+              <component id="84184" class="javax.swing.JLabel">
+                <constraints border-constraint="North"/>
+                <properties>
+                  <text value="Who made Booking:"/>
+                </properties>
+              </component>
+              <component id="4f34" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+                <constraints border-constraint="West"/>
+                <properties/>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
