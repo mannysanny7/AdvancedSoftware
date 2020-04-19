@@ -7,24 +7,25 @@ import java.util.GregorianCalendar;
 
 public class RoomNode<T> {
 
-    T room;
+    String room;
     RoomNode<T> next;
 
     Integer roomSize;
     String roomType;
     boolean roomAvailable = true; //make room available by default
 
-    public RoomNode(T newRoom) {
-        room = newRoom;
+    public RoomNode(String ID, Integer size, String type, boolean isAvailable) {
+        room = ID;
+        roomSize = size;
+        roomType = type;
+        roomAvailable = isAvailable;
+
+
         next = null;
     }
 
     public RoomNode<T> getNext() {
         return next;
-    }
-
-    public T getValue(){
-        return room;
     }
 
     public boolean isRoomAvailable() {
@@ -33,6 +34,10 @@ public class RoomNode<T> {
 
     public void setRoomAvailable(boolean isAvail){
         roomAvailable = isAvail;
+    }
+
+    public String getRoomNode(){
+        return room;
     }
 
     /*String roomID;

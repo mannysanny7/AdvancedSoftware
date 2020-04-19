@@ -7,25 +7,70 @@ import java.util.Iterator;
 
 public class Room<T> {
 
-    private RoomNode<T> topRoom;
+    private RoomNode<T> roomHead; //head of list
+    private int size = 0; //size of list
 
-    private ArrayList<T> allRooms = new ArrayList<T>();
+    private ArrayList<RoomNode> allRooms = new ArrayList<RoomNode>();
 
     public Room() {
-        topRoom = null;
+        this.roomHead = null;
     }
 
-    void addRoom(T newRoom) {
-      /*  RoomNode<T> temp = new RoomNode<T>(newRoom, topRoom);
-        topRoom = temp;
-        size++;*/
-        //System.out.println("new room:" + newRoom);
+    public void addRoom(String roomID, Integer roomSize, String type, boolean isAvailable) {
+        //System.out.println(roomToAdd.toString());
+
+        RoomNode<T> tempRoom = new RoomNode<T>(roomID, roomSize, type, isAvailable);
+        System.out.println(tempRoom.room);
+
+        if (this.roomHead == null) { //if room is alone, add as head.
+            this.roomHead = tempRoom;
+
+            System.out.println("first entry: " + roomHead.room);
+            //Add new room to list. It is the first one.
+            roomHead = tempRoom;
+        } else { //else add to end of list
+            RoomNode<T> newRoom = tempRoom;
+
+            RoomNode<T> lastRoom = getLastRoom(roomHead);
+            lastRoom.next = newRoom; //add new room to end of list
+            System.out.println("next entry: " + newRoom.room);
+            size++; //increment list
+        }
+    }
+
+    private RoomNode<T> getLastRoom(RoomNode<T> room) {
+        RoomNode<T> lastRoom = room;
+
+        if (lastRoom.next != null) { //if room has room attached, do method on attached room.
+            return getLastRoom(lastRoom.next);
+        } else {
+            return lastRoom;
+        }
+
+    }
+
+    public ArrayList<RoomNode> displayAllRooms(Room<T> room) {
+        RoomNode<T> currentRoom = room.roomHead;
+        while (currentRoom != null){
+            allRooms.add(currentRoom);
+            currentRoom = currentRoom.next;
+        }
+        return allRooms;
+    }
+
+
+    public int getSize() {
+        return size;
+    }
+
+
+
+}
+
+    /*void addRoom(T newRoom) {
         RoomNode<T> temporary = topRoom;
-        //System.out.println("temporary" + temporary);
         topRoom = new RoomNode<T>(newRoom);
-        //System.out.println("top room"+topRoom.room);
         topRoom.next = temporary;
-        //System.out.println("top room next:" + topRoom.next.room);
     }
 
     public T pop() {
@@ -37,7 +82,7 @@ public class Room<T> {
         return oldTop.getValue();
     }
 
-    public T peek(){
+    public T peek() {
         //if (size == 0){
         //    return null;
         //}
@@ -54,43 +99,25 @@ public class Room<T> {
         }
     }
 
-    public void empty(){
+    public void empty() {
         topRoom = null;
     }
 
     public ArrayList<T> display() {
-       displayAllRooms();
-       System.out.println(allRooms);
-       return allRooms;
+        displayAllRooms();
+        return allRooms;
     }
 
-    private void displayAllRooms(){
-        /*System.out.println("Array:" + this.allRooms);
-        Iterator<T> it = allRooms.iterator();
-        int i = 0;
-        while (it.hasNext()){
-            T nextRoom = it.next();
-            System.out.println(nextRoom);
-            allRooms.add(nextRoom);
-            System.out.println(allRooms);
-            i++;
-        }*/
-        /*while(topRoom.next != null){
-            System.out.println(topRoom.next);
-        }*/
-       // System.out.println(topRoom);
-        //System.out.println(topRoom.next);
-        //System.out.println(getEntry());
+    private void displayAllRooms() {
         while (true) {
-            try{
+            try {
                 //System.out.println(getEntry());
                 allRooms.add(getEntry());
             } catch (EmptyStackException e) {
                 break;
             }
         }
-    }
-
+    }*/
 
 /*    private String roomNumber;
     private Integer roomSize;
@@ -135,31 +162,6 @@ public class Room<T> {
         }
     }
 
-    private void removeRoomNode(){
-
-    }
-
-    *//*public ActionListener allRooms() {
-        ActionListener e = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                display();
-            }
-        };
-    return e;
-    }
-
-    public ActionListener addRoom(String newRoom, Integer size, String type) {
-        ActionListener e = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println(newRoom + " " +size+ " " + type);
-                add(newRoom, size, type);
-            }
-        };
-        return e;
-    }*/
 
 
-
-}
+}*/

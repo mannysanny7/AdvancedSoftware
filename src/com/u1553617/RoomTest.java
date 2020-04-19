@@ -12,7 +12,7 @@ import java.util.Iterator;
 
 public class RoomTest {
     public static void main(String[] args) {
-        Room<RoomNode> roomTree = new Room();
+        Room<RoomNode> roomList = new Room();
 
         String[] header = new String[]{"Room ID", "Room Size", "Room Type", "Room Available"};
 
@@ -47,22 +47,19 @@ public class RoomTest {
         managerGUI.getViewListBtn().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //view all rooms and display them in table
                 ArrayList<RoomNode> all = new ArrayList<RoomNode>();
-                all = roomTree.display();
+                all = roomList.displayAllRooms(roomList);
                 Iterator<RoomNode> it = all.iterator();
                 int i = 0;
 
-                //clear prev
                 tblModel.setRowCount(0);
 
-                while(it.hasNext()){
+                while(it.hasNext()) {
                     RoomNode currentRoom = it.next();
                     //System.out.println("Element " + i + " - " + currentRoom);
                     tblModel.addRow(new Object[]{currentRoom.room, currentRoom.roomSize, currentRoom.roomType, currentRoom.roomAvailable});
                     i++;
                 }
-
             }
         });
 
@@ -76,13 +73,13 @@ public class RoomTest {
                 //add to table
                 //System.out.println(newRoomText + " " + newRoomSize + " " + newRoomType);
 
-                RoomNode<String> r = new RoomNode<>(newRoomText);
-                r.roomSize = newRoomSize;
-                r.roomType = newRoomType;
+                //RoomNode<String> r = new RoomNode<>(newRoomText);
+                //r.roomSize = newRoomSize;
+                //r.roomType = newRoomType;
 
-                //System.out.println(r.roomSize + " " + r.roomType);
+                //System.out.println(r.room + " " + r.roomSize + " " + r.roomType + " " + r.roomAvailable);
 
-                roomTree.addRoom(r);
+                roomList.addRoom(newRoomText, newRoomSize, newRoomType, true);
 
                 //tblModel.addRow(new Object[]{newRoomText, newRoomSize, newRoomType});
 
