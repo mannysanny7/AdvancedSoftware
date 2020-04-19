@@ -6,12 +6,13 @@ import javax.management.DescriptorAccess;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 public class RoomTest {
     public static void main(String[] args) {
-        Room roomTree = new Room();
+        Room<RoomNode> roomTree = new Room();
 
         String[] header = new String[]{"Room ID", "Room Size", "Room Type", "Room Available"};
 
@@ -49,14 +50,16 @@ public class RoomTest {
                 //view all rooms and display them in table
                 ArrayList<RoomNode> all = new ArrayList<RoomNode>();
                 all = roomTree.display();
-
                 Iterator<RoomNode> it = all.iterator();
                 int i = 0;
+
+                //clear prev
+                tblModel.setRowCount(0);
 
                 while(it.hasNext()){
                     RoomNode currentRoom = it.next();
                     //System.out.println("Element " + i + " - " + currentRoom);
-                    tblModel.addRow(new Object[]{currentRoom.roomID, currentRoom.roomSize, currentRoom.roomType, currentRoom.roomAvailable});
+                    tblModel.addRow(new Object[]{currentRoom.room, currentRoom.roomSize, currentRoom.roomType, currentRoom.roomAvailable});
                     i++;
                 }
 
@@ -72,7 +75,14 @@ public class RoomTest {
                 String newRoomType = managerGUI.getRoomTypeCB();
                 //add to table
                 //System.out.println(newRoomText + " " + newRoomSize + " " + newRoomType);
-                roomTree.add(newRoomText, newRoomSize, newRoomType);
+
+                RoomNode<String> r = new RoomNode<>(newRoomText);
+                r.roomSize = newRoomSize;
+                r.roomType = newRoomType;
+
+                //System.out.println(r.roomSize + " " + r.roomType);
+
+                roomTree.addRoom(r);
 
                 //tblModel.addRow(new Object[]{newRoomText, newRoomSize, newRoomType});
 

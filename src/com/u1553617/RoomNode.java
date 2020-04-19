@@ -5,9 +5,55 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class RoomNode {
+public class RoomNode<T> {
 
-    String dataItem;
+    T room;
+    RoomNode<T> next;
+
+    Integer roomSize;
+    String roomType;
+    boolean roomAvailable = true; //make room available by default
+
+    public RoomNode(T newRoom) {
+        room = newRoom;
+        next = null;
+    }
+
+    public RoomNode<T> getNext() {
+        return next;
+    }
+
+    public T getValue(){
+        return room;
+    }
+
+    public boolean isRoomAvailable() {
+        return roomAvailable;
+    }
+
+    public void setRoomAvailable(boolean isAvail){
+        roomAvailable = isAvail;
+    }
+
+    /*String roomID;
+    Integer roomSize;
+    enum TypesOfRooms {
+        LAB,
+        TUTORIAL,
+        LECTURE
+    }
+    String roomType;
+    boolean roomAvailable;
+
+    RoomNode(String ID, Integer size, String type, boolean isAvailable) {
+        roomID = ID;
+        roomSize = size;
+        roomType = type;
+        roomAvailable = isAvailable;
+        next = null;
+    }*/
+
+    /*String dataItem;
     RoomNode left, right;
 
     String roomID; //room letter + number?
@@ -37,6 +83,6 @@ public class RoomNode {
 
         left = null;
         right = null;
-    }
+    }*/
 
 }
