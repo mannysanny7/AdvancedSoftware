@@ -36,7 +36,7 @@ public class RoomNode<T> {
         roomAvailable = isAvail;
     }
 
-    public String getRoomNode(){
+    public String getRoomName(){
         return room;
     }
 

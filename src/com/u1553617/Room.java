@@ -10,7 +10,7 @@ public class Room<T> {
     private RoomNode<T> roomHead; //head of list
     private int size = 0; //size of list
 
-    private ArrayList<RoomNode> allRooms = new ArrayList<RoomNode>();
+    //private ArrayList<RoomNode> allRooms = new ArrayList<RoomNode>();
 
     public Room() {
         this.roomHead = null;
@@ -38,7 +38,7 @@ public class Room<T> {
         }
     }
 
-    private RoomNode<T> getLastRoom(RoomNode<T> room) {
+    public RoomNode<T> getLastRoom(RoomNode<T> room) {
         RoomNode<T> lastRoom = room;
 
         if (lastRoom.next != null) { //if room has room attached, do method on attached room.
@@ -49,7 +49,28 @@ public class Room<T> {
 
     }
 
+    public RoomNode<T> getSpecificRoom(int index) {
+        if (index < 0) {
+            return null;
+        }
+        RoomNode<T> currentRoom = null;
+        if (this.roomHead != null) {
+            currentRoom = roomHead;
+            for (int i=0;i<index;i++) {
+                if (currentRoom.next == null){
+                    //no next room
+                    return currentRoom;
+                }
+                currentRoom = currentRoom.next;
+                System.out.println("found room: " + currentRoom.getRoomName());
+            }
+            return currentRoom;
+        }
+        return currentRoom;
+    }
+
     public ArrayList<RoomNode> displayAllRooms(Room<T> room) {
+        ArrayList<RoomNode> allRooms = new ArrayList<RoomNode>();
         RoomNode<T> currentRoom = room.roomHead;
         while (currentRoom != null){
             allRooms.add(currentRoom);
@@ -58,13 +79,9 @@ public class Room<T> {
         return allRooms;
     }
 
-
     public int getSize() {
         return size;
     }
-
-
-
 }
 
     /*void addRoom(T newRoom) {

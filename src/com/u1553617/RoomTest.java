@@ -34,7 +34,6 @@ public class RoomTest {
         frame.setVisible(true);
 
 
-
         String roomID = managerGUI.getRoomId();
         Integer roomSize = managerGUI.getRoomSizeCB();
         String roomType = managerGUI.getRoomTypeCB();
@@ -44,27 +43,7 @@ public class RoomTest {
         //managerGUI.getAddRoomBtn().addActionListener(roomTree.addRoom(managerGUI.getRoomId(), managerGUI.getRoomSizeCB(), managerGUI.getRoomTypeCB()));
         //managerGUI.getViewListBtn().addActionListener(roomTree.allRooms());
 
-        managerGUI.getViewListBtn().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ArrayList<RoomNode> all = new ArrayList<RoomNode>();
-                all = roomList.displayAllRooms(roomList);
-                Iterator<RoomNode> it = all.iterator();
-                int i = 0;
-
-                tblModel.setRowCount(0);
-
-                while(it.hasNext()) {
-                    RoomNode currentRoom = it.next();
-                    //System.out.println("Element " + i + " - " + currentRoom);
-                    tblModel.addRow(new Object[]{currentRoom.room, currentRoom.roomSize, currentRoom.roomType, currentRoom.roomAvailable});
-                    i++;
-                }
-            }
-        });
-
-
-        //DefaultTableModel finalTblModel = tblModel;
+        //Add rooms
         managerGUI.getAddRoomBtn().addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent ae){
                 String newRoomText = managerGUI.getRoomId();
@@ -86,6 +65,28 @@ public class RoomTest {
             }
         });
 
+        //View List of Rooms
+        managerGUI.getViewListBtn().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ArrayList<RoomNode> all = new ArrayList<RoomNode>();
+                all = roomList.displayAllRooms(roomList);
+                Iterator<RoomNode> it = all.iterator();
+                //int i = 0;
+
+                //clear table
+                tblModel.setRowCount(0);
+
+                while(it.hasNext()) {
+                    RoomNode currentRoom = it.next();
+                    //System.out.println("Element " + i + " - " + currentRoom);
+                    tblModel.addRow(new Object[]{currentRoom.room, currentRoom.roomSize, currentRoom.roomType, currentRoom.roomAvailable});
+                    //i++;
+                }
+            }
+        });
+
+        //remove room(s)
         managerGUI.getRemoveRoomButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -98,7 +99,35 @@ public class RoomTest {
             }
         });
 
+        //view availability of room
+        managerGUI.getViewAvailabiltyOfRoomButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Integer c = roomsTable.getSelectedColumn();
+                Integer r = roomsTable.getSelectedRow();
 
+
+                String selectedRoom = roomsTable.getValueAt(r,c).toString();
+                System.out.println(selectedRoom);
+            }
+        });
+
+        //mark room as unavailable
+        managerGUI.getMarkRoomAsUnavailableButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Integer c = roomsTable.getSelectedColumn();
+                Integer r = roomsTable.getSelectedRow();
+
+
+                String selectedRoom = roomsTable.getValueAt(r,c).toString();
+                //System.out.println(selectedRoom);
+
+                RoomNode roomToMark = roomList.getSpecificRoom(1);
+                System.out.println("FOUND BY GUI:" + roomToMark.getRoomName());
+                roomToMark.setRoomAvailable(false);
+            }
+        });
 
     }
 }
