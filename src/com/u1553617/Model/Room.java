@@ -1,12 +1,8 @@
-package com.u1553617;
+package com.u1553617.Model;
 
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.EmptyStackException;
-import java.util.Iterator;
 
 public class Room<T> {
-
     private RoomNode<T> roomHead; //head of list
     private int size = 0; //size of list
     private String startTermDate, endTermDate;
@@ -138,102 +134,3 @@ public class Room<T> {
         return endTermDate;
     }
 }
-
-    /*void addRoom(T newRoom) {
-        RoomNode<T> temporary = topRoom;
-        topRoom = new RoomNode<T>(newRoom);
-        topRoom.next = temporary;
-    }
-
-    public T pop() {
-        RoomNode<T> oldTop = topRoom;
-        //if (size == 0) {
-        //    return null;
-        //}
-        topRoom = topRoom.getNext();
-        return oldTop.getValue();
-    }
-
-    public T peek() {
-        //if (size == 0){
-        //    return null;
-        //}
-        return topRoom.getValue();
-    }
-
-    public T getEntry() throws EmptyStackException {
-        if (topRoom == null)
-            throw new EmptyStackException();
-        else {
-            T result = topRoom.room;
-            topRoom = topRoom.next;
-            return result;
-        }
-    }
-
-    public void empty() {
-        topRoom = null;
-    }
-
-    public ArrayList<T> display() {
-        displayAllRooms();
-        return allRooms;
-    }
-
-    private void displayAllRooms() {
-        while (true) {
-            try {
-                //System.out.println(getEntry());
-                allRooms.add(getEntry());
-            } catch (EmptyStackException e) {
-                break;
-            }
-        }
-    }*/
-
-/*    private String roomNumber;
-    private Integer roomSize;
-    private String roomType;
-    private Date roomDateTime; //availability of room to book
-    private boolean roomAvailable;*//*
-
-    private RoomNode root;
-    private ArrayList<RoomNode> allRooms = new ArrayList<RoomNode>();
-
-    Room(){
-        root = null;
-    }
-
-    void add(String newRoom, Integer size, String type){
-        root = addNewNode(root, newRoom, size, type);
-    }
-
-    private RoomNode addNewNode(RoomNode R, String Id, Integer size, String type){
-        if (R == null)
-            return new RoomNode(Id, size, type , true);
-        else if (R.roomID.compareTo(Id) > 0){
-            R.left = addNewNode(R.left, Id, size, type);
-            return R;
-        } else {
-            R.right = addNewNode(R.right, Id, size, type);
-            return R;
-        }
-    }
-
-    ArrayList<RoomNode> display(){
-        displayTree(root);
-        return (allRooms);
-    }
-
-    private void displayTree(RoomNode R){
-        if (R != null) {
-            displayTree(R.left);
-            System.out.println(R.roomID + R.roomSize + R.roomType + R.roomAvailable);
-            allRooms.add(R);
-            displayTree(R.right);
-        }
-    }
-
-
-
-}*/

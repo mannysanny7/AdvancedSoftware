@@ -1,22 +1,25 @@
 package com.u1553617;
 
+import com.u1553617.Model.Room;
+import com.u1553617.Model.RoomNode;
 import com.u1553617.View.Manager;
 
-import javax.management.DescriptorAccess;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 public class RoomTest {
+    public Manager managerGUI;
+    Room<RoomNode> roomList = new Room();
+
     public static void main(String[] args) {
         Room<RoomNode> roomList = new Room();
 
-        String[] header = new String[]{"Room ID", "Room Size", "Room Type", "Room Available", "Time Unavailable"};
-
         Manager managerGUI = new Manager();
+
+        String[] header = new String[]{"Room ID", "Room Size", "Room Type", "Room Available", "Time Unavailable"};
         DefaultTableModel tblModel = new DefaultTableModel();
         tblModel.setColumnIdentifiers(header);
 
@@ -24,7 +27,7 @@ public class RoomTest {
         managerGUI.getPanel().add(new JScrollPane(roomsTable));
         roomsTable.setModel(tblModel);
 
-        JFrame frame = new JFrame("TESTING MANAGER GUI");
+        JFrame frame = new JFrame("MANAGER GUI");
 
         frame.setContentPane(managerGUI.getPanel());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,19 +52,9 @@ public class RoomTest {
                 String newRoomText = managerGUI.getRoomId();
                 Integer newRoomSize = managerGUI.getRoomSizeCB();
                 String newRoomType = managerGUI.getRoomTypeCB();
-                //add to table
-                //System.out.println(newRoomText + " " + newRoomSize + " " + newRoomType);
-
-                //RoomNode<String> r = new RoomNode<>(newRoomText);
-                //r.roomSize = newRoomSize;
-                //r.roomType = newRoomType;
-
-                //System.out.println(r.room + " " + r.roomSize + " " + r.roomType + " " + r.roomAvailable);
+                //add to list
 
                 roomList.addRoom(newRoomText, newRoomSize, newRoomType, true);
-
-                //tblModel.addRow(new Object[]{newRoomText, newRoomSize, newRoomType});
-
             }
         });
 
@@ -72,7 +65,6 @@ public class RoomTest {
                 ArrayList<RoomNode> all = new ArrayList<RoomNode>();
                 all = roomList.displayAllRooms(roomList);
                 Iterator<RoomNode> it = all.iterator();
-                //int i = 0;
 
                 //clear table
                 tblModel.setRowCount(0);
@@ -97,11 +89,10 @@ public class RoomTest {
                 Integer c = roomsTable.getSelectedColumn();
                 Integer r = roomsTable.getSelectedRow();
 
-
                 String selectedRoom = roomsTable.getValueAt(r,c).toString();
-                System.out.println(selectedRoom);
+                //System.out.println(selectedRoom);
                 boolean roomRemoved = roomList.removeRoom(selectedRoom);
-                System.out.println("Removed? " + roomRemoved);
+                //System.out.println("Removed? " + roomRemoved);
                 
             }
         });
@@ -113,10 +104,8 @@ public class RoomTest {
                 Integer c = roomsTable.getSelectedColumn();
                 Integer r = roomsTable.getSelectedRow();
 
-
                 String selectedRoom = roomsTable.getValueAt(r,c).toString();
-                System.out.println(selectedRoom);
-
+                //System.out.println(selectedRoom);
             }
         });
 
@@ -130,17 +119,11 @@ public class RoomTest {
 
                 String selectedRoom = roomsTable.getValueAt(r,c).toString();
                 String timeUnavailable = managerGUI.getTimeUnavailable();
-                //System.out.println(selectedRoom);
-
-                //RoomNode roomToMark = roomList.getSpecificRoom(1);
-                //System.out.println("FOUND BY GUI:" + roomToMark.getRoomName());
-                //roomToMark.setRoomAvailable(false);
 
                 RoomNode roomToMark = roomList.getRoomByName(selectedRoom);
-                System.out.println("FOUND BY GUI:" + roomToMark.getRoomName());
+                //System.out.println("FOUND BY GUI:" + roomToMark.getRoomName());
                 roomToMark.setRoomAvailable(false);
                 roomToMark.setTimeUnavailable(timeUnavailable);
-
             }
         });
 
@@ -155,17 +138,6 @@ public class RoomTest {
                 //String selectedRoom = roomsTable.getValueAt(r,c).toString();
                 String start = managerGUI.getStartTermDate();
                 String end = managerGUI.getEndTermDate();
-                //System.out.println(start + " " + end);
-
-                //RoomNode roomToMark = roomList.getSpecificRoom(1);
-                //System.out.println("FOUND BY GUI:" + roomToMark.getRoomName());
-                //roomToMark.setRoomAvailable(false);
-
-                //RoomNode roomToMark = roomList.getRoomByName(selectedRoom);
-                //System.out.println("FOUND BY GUI:" + roomToMark.getRoomName());
-                //roomToMark.setRoomTermStart(start);
-                //roomToMark.setRoomTermEnd(end);
-
 
                 roomList.setStartTermDate(start);
                 roomList.setEndTermDate(end);
