@@ -14,7 +14,7 @@ public class RoomTest {
     public static void main(String[] args) {
         Room<RoomNode> roomList = new Room();
 
-        String[] header = new String[]{"Room ID", "Room Size", "Room Type", "Room Available"};
+        String[] header = new String[]{"Room ID", "Room Size", "Room Type", "Room Available", "Time Unavailable"};
 
         Manager managerGUI = new Manager();
         DefaultTableModel tblModel = new DefaultTableModel();
@@ -79,8 +79,12 @@ public class RoomTest {
 
                 while(it.hasNext()) {
                     RoomNode currentRoom = it.next();
-                    //System.out.println("Element " + i + " - " + currentRoom);
-                    tblModel.addRow(new Object[]{currentRoom.room, currentRoom.roomSize, currentRoom.roomType, currentRoom.roomAvailable});
+                    //adding relevant data about the room to table
+                    tblModel.addRow(new Object[]
+                            {
+                                    currentRoom.getRoomName(), currentRoom.getRoomSize(), currentRoom.getRoomType(),
+                                    currentRoom.isRoomAvailable(), currentRoom.getTimeUnavailable()
+                            });
                     //i++;
                 }
             }
@@ -96,6 +100,9 @@ public class RoomTest {
 
                 String selectedRoom = roomsTable.getValueAt(r,c).toString();
                 System.out.println(selectedRoom);
+                boolean roomRemoved = roomList.removeRoom(selectedRoom);
+                System.out.println("Removed? " + roomRemoved);
+                
             }
         });
 
@@ -109,6 +116,7 @@ public class RoomTest {
 
                 String selectedRoom = roomsTable.getValueAt(r,c).toString();
                 System.out.println(selectedRoom);
+
             }
         });
 
@@ -121,11 +129,56 @@ public class RoomTest {
 
 
                 String selectedRoom = roomsTable.getValueAt(r,c).toString();
+                String timeUnavailable = managerGUI.getTimeUnavailable();
                 //System.out.println(selectedRoom);
 
-                RoomNode roomToMark = roomList.getSpecificRoom(1);
+                //RoomNode roomToMark = roomList.getSpecificRoom(1);
+                //System.out.println("FOUND BY GUI:" + roomToMark.getRoomName());
+                //roomToMark.setRoomAvailable(false);
+
+                RoomNode roomToMark = roomList.getRoomByName(selectedRoom);
                 System.out.println("FOUND BY GUI:" + roomToMark.getRoomName());
                 roomToMark.setRoomAvailable(false);
+                roomToMark.setTimeUnavailable(timeUnavailable);
+
+            }
+        });
+
+        //Enter term dates
+        managerGUI.getSubmitTermDateButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Integer c = roomsTable.getSelectedColumn();
+                Integer r = roomsTable.getSelectedRow();
+
+
+                //String selectedRoom = roomsTable.getValueAt(r,c).toString();
+                String start = managerGUI.getStartTermDate();
+                String end = managerGUI.getEndTermDate();
+                //System.out.println(start + " " + end);
+
+                //RoomNode roomToMark = roomList.getSpecificRoom(1);
+                //System.out.println("FOUND BY GUI:" + roomToMark.getRoomName());
+                //roomToMark.setRoomAvailable(false);
+
+                //RoomNode roomToMark = roomList.getRoomByName(selectedRoom);
+                //System.out.println("FOUND BY GUI:" + roomToMark.getRoomName());
+                //roomToMark.setRoomTermStart(start);
+                //roomToMark.setRoomTermEnd(end);
+
+
+                roomList.setStartTermDate(start);
+                roomList.setEndTermDate(end);
+            }
+        });
+
+        managerGUI.getViewTermDatesBtn().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String start = roomList.getStartTermDate();
+                String end = roomList.getEndTermDate();
+
+                managerGUI.setTermDatesView(start + " - " + end);
             }
         });
 

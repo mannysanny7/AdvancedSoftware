@@ -9,6 +9,7 @@ public class Room<T> {
 
     private RoomNode<T> roomHead; //head of list
     private int size = 0; //size of list
+    private String startTermDate, endTermDate;
 
     //private ArrayList<RoomNode> allRooms = new ArrayList<RoomNode>();
 
@@ -28,6 +29,7 @@ public class Room<T> {
             System.out.println("first entry: " + roomHead.room);
             //Add new room to list. It is the first one.
             roomHead = tempRoom;
+            size++;
         } else { //else add to end of list
             RoomNode<T> newRoom = tempRoom;
 
@@ -69,6 +71,43 @@ public class Room<T> {
         return currentRoom;
     }
 
+    public RoomNode<T> getRoomByName(String roomName) {
+        RoomNode<T> currentRoom = null;
+        if (this.roomHead != null) {
+            currentRoom = this.roomHead;
+            while (!currentRoom.room.equals(roomName)){
+                currentRoom = currentRoom.getNext();
+            }
+            return currentRoom;
+        }
+        return currentRoom;
+    }
+
+    public boolean removeRoom(String roomName) {
+        RoomNode<T> currentRoom = null;
+        System.out.println("size before: " + size);
+        if (size == 1){//if only 1 room in list
+            this.roomHead = null;
+            return true;
+        }
+
+        if (this.roomHead != null) {
+            currentRoom = this.roomHead;
+            if (!currentRoom.room.equals(roomName)){
+                currentRoom = currentRoom.getNext();
+            }
+            System.out.println("Room to remove: " + currentRoom.getRoomName());
+            //remove the correct selected room
+
+            //get next value to replace current room
+            roomHead.setNext(currentRoom.getNext());
+            size--;
+            System.out.println("size after: " + size);
+            return true;
+        }
+        return false;
+    }
+
     public ArrayList<RoomNode> displayAllRooms(Room<T> room) {
         ArrayList<RoomNode> allRooms = new ArrayList<RoomNode>();
         RoomNode<T> currentRoom = room.roomHead;
@@ -81,6 +120,22 @@ public class Room<T> {
 
     public int getSize() {
         return size;
+    }
+
+    public void setStartTermDate(String date) {
+        this.startTermDate = date;
+    }
+
+    public void setEndTermDate(String date) {
+        this.endTermDate = date;
+    }
+
+    public String getStartTermDate() {
+        return this.startTermDate;
+    }
+
+    public String getEndTermDate() {
+        return endTermDate;
     }
 }
 

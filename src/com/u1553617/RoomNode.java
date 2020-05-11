@@ -13,6 +13,10 @@ public class RoomNode<T> {
     Integer roomSize;
     String roomType;
     boolean roomAvailable = true; //make room available by default
+    String timeUnavailable;
+
+    //date time
+    String roomTermStart, roomTermEnd;
 
     public RoomNode(String ID, Integer size, String type, boolean isAvailable) {
         room = ID;
@@ -28,6 +32,10 @@ public class RoomNode<T> {
         return next;
     }
 
+    public void setNext(RoomNode<T> newRoom) {
+        this.next = newRoom;
+    }
+
     public boolean isRoomAvailable() {
         return roomAvailable;
     }
@@ -40,7 +48,37 @@ public class RoomNode<T> {
         return room;
     }
 
-    /*String roomID;
+    public Integer getRoomSize() {
+        return roomSize;
+    }
+
+    public String getRoomType() {
+        return roomType;
+    }
+
+    public String getRoomTermStart() {
+        return roomTermStart;
+    }
+
+    public void setRoomTermStart(String roomTermStart) {
+        this.roomTermStart = roomTermStart;
+    }
+
+    public String getRoomTermEnd() {
+        return roomTermEnd;
+    }
+
+    public void setRoomTermEnd(String roomTermEnd) {
+        this.roomTermEnd = roomTermEnd;
+    }
+
+    public String getTimeUnavailable(){
+        return timeUnavailable;
+    }
+    public void setTimeUnavailable(String timeUnavailable) {
+        this.timeUnavailable = timeUnavailable;
+    }
+/*String roomID;
     Integer roomSize;
     enum TypesOfRooms {
         LAB,

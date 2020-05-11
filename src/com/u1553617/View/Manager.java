@@ -16,10 +16,16 @@ public class Manager {
     private JButton removeRoomButton;
     private JButton viewAvailabiltyOfRoomButton;
     private JButton markRoomAsUnavailableButton;
+    private JTextField startTermTF;
+    private JTextField endTermTF;
+    private JButton submitTermDateButton;
+    private JTextField timeUnavTF;
+    private JTextField termDatesTF;
+    private JButton viewTermDatesBtn;
 
     private DefaultTableModel tableModel;
 
-    String[] header = {"Room ID", "Room Size", "Room Type", "Room Available"};
+    String[] header = {"Room ID", "Room Size", "Room Type", "Room Available", "Unavailable for:"};
 
     public JPanel getPanel() {
         return panel1;
@@ -72,6 +78,42 @@ public class Manager {
 
     public JButton getMarkRoomAsUnavailableButton() {
         return markRoomAsUnavailableButton;
+    }
+
+    public String getTimeUnavailable() {
+        return timeUnavTF.getText();
+    }
+
+    public JButton getSubmitTermDateButton() {
+        return submitTermDateButton;
+    }
+
+    public String getStartTermDate() {
+        return this.startTermTF.getText();
+    }
+
+    public void setStartTermDate(String startDate) {
+        this.startTermTF.setText(startDate);
+    }
+
+    public String getEndTermDate() {
+        return this.endTermTF.getText();
+    }
+
+    public void setEndTermDate(String endTermDate) {
+        this.endTermTF.setText(endTermDate);
+    }
+
+    public JTextField getTermDatesTF() {
+        return termDatesTF;
+    }
+
+    public void setTermDatesView(String dates) {
+        getTermDatesTF().setText(dates);
+    }
+
+    public JButton getViewTermDatesBtn() {
+        return viewTermDatesBtn;
     }
 
     /*
@@ -147,12 +189,42 @@ public class Manager {
         viewAvailabiltyOfRoomButton = new JButton();
         viewAvailabiltyOfRoomButton.setText("View Availabilty of Room");
         panel1.add(viewAvailabiltyOfRoomButton);
+        final JLabel label4 = new JLabel();
+        label4.setText("Enter Time Unavailable");
+        panel1.add(label4);
+        timeUnavTF = new JTextField();
+        timeUnavTF.setColumns(5);
+        timeUnavTF.setText("1 Day");
+        panel1.add(timeUnavTF);
         markRoomAsUnavailableButton = new JButton();
         markRoomAsUnavailableButton.setText("Mark Room as unavailable");
         panel1.add(markRoomAsUnavailableButton);
-        final JLabel label4 = new JLabel();
-        label4.setText("Term Dates:");
-        panel1.add(label4);
+        final JLabel label5 = new JLabel();
+        label5.setText("Start Term Date:");
+        panel1.add(label5);
+        startTermTF = new JTextField();
+        startTermTF.setColumns(5);
+        panel1.add(startTermTF);
+        final JLabel label6 = new JLabel();
+        label6.setText("End Term Date:");
+        panel1.add(label6);
+        endTermTF = new JTextField();
+        endTermTF.setColumns(5);
+        panel1.add(endTermTF);
+        submitTermDateButton = new JButton();
+        submitTermDateButton.setText("Submit Term Date");
+        panel1.add(submitTermDateButton);
+        final JLabel label7 = new JLabel();
+        label7.setText("Current term dates:");
+        panel1.add(label7);
+        termDatesTF = new JTextField();
+        termDatesTF.setColumns(5);
+        termDatesTF.setEditable(true);
+        termDatesTF.setEnabled(true);
+        panel1.add(termDatesTF);
+        viewTermDatesBtn = new JButton();
+        viewTermDatesBtn.setText("View Term Dates");
+        panel1.add(viewTermDatesBtn);
     }
 
     /**
