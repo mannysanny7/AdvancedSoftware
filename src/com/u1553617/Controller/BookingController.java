@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class BookingController{
+public class BookingController extends Thread{
 
     private Clerk clerkGUI;
     private Booking<BookingNode> bookingList;

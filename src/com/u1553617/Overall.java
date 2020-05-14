@@ -10,7 +10,7 @@ import com.u1553617.Model.RoomNode;
 import com.u1553617.View.Clerk;
 import com.u1553617.View.Manager;
 
-public class Overall {
+public class Overall{
 
     public static void main(String[] args) {
         Room<RoomNode> roomList = new Room();
@@ -18,11 +18,24 @@ public class Overall {
         RoomController cont = new RoomController(managerView, roomList);
 
         Booking<BookingNode> bookingList = new Booking();
-        Clerk clerkView = new Clerk();
-        BookingController bookCont = new BookingController(clerkView, bookingList, roomList);
+
+        BookingController bookCont1, bookCont2, bookCont3;
+        Clerk clerkView1 = new Clerk();
+        Clerk clerkView2 = new Clerk();
+        Clerk clerkView3 = new Clerk();
+
+        bookCont1 = new BookingController(clerkView1, bookingList, roomList);
+        bookCont2 = new BookingController(clerkView2, bookingList, roomList);
+        bookCont3 = new BookingController(clerkView3, bookingList, roomList);
+
+        bookCont1.start();
+        bookCont2.start();
+        bookCont3.start();
 
         managerView.showForm();
-        clerkView.showForm();
+        clerkView1.showForm();
+        clerkView2.showForm();
+        clerkView3.showForm();
     }
 
 }
