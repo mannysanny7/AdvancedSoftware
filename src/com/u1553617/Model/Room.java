@@ -7,8 +7,6 @@ public class Room<T> {
     private int size = 0; //size of list
     private String startTermDate, endTermDate;
 
-    //private ArrayList<RoomNode> allRooms = new ArrayList<RoomNode>();
-
     public Room() {
         this.roomHead = null;
     }

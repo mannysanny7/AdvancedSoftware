@@ -62,4 +62,7 @@ public class Booking<T> {
         return currentBooking;
     }
 
+    public int getSize() {
+        return size;
+    }
 }
