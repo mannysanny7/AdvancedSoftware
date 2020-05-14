@@ -136,6 +136,8 @@ public class Manager {
         return viewTermDatesBtn;
     }
 
+    /*
+    Action Listeners in Controller*/
     public void addRoomActionListener(ActionListener addRoomAL) {
         addRoomBtn.addActionListener(addRoomAL);
     }

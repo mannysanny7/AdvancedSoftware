@@ -12,7 +12,6 @@ public class RoomController {
     private Manager managerGUI;
     private Room<RoomNode> roomList;
 
-
     public RoomController(Manager manager, Room<RoomNode> roomList) {
         this.managerGUI = manager;
         this.roomList = roomList;
